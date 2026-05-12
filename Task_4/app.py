@@ -71,10 +71,7 @@ def register():
 
         hashed_password = generate_password_hash(password)
 
-        user = User(
-            username=username,
-            password=hashed_password
-        )
+        user = User(username=username, password=hashed_password)
 
         db.session.add(user)
         db.session.commit()
@@ -126,11 +123,7 @@ def course_page(course_id):
 
     requests = Request.query.filter_by(course_id=course.id).all()
 
-    return render_template(
-        'course.html',
-        course=course,
-        requests=requests
-    )
+    return render_template('course.html', course=course, requests=requests)
 
 
 @app.route('/course/<int:course_id>/create-request', methods=['GET', 'POST'])
