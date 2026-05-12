@@ -58,9 +58,11 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+
 @app.route('/')
-def home():
-    return redirect(url_for('courses'))
+def courses():
+    all_courses = Course.query.all()
+    return render_template('index.html', courses=all_courses)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -103,12 +105,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
-
-
-@app.route('/courses')
-def courses():
-    all_courses = Course.query.all()
-    return render_template('courses.html', courses=all_courses)
 
 
 @app.route('/dashboard')
