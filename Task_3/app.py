@@ -9,12 +9,16 @@ from flask_login import (
     current_user
 )
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'qwjdiuqwudiiiui12$jqj!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+    'sqlite:///' + os.path.join(BASE_DIR, 'task3.db')
 
 db = SQLAlchemy(app)
 
