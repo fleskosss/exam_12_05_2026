@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ course.title }}</h2>
+
+<p>{{ course.description }}</p>
+
+<hr>
+
+{% if current_user.is_authenticated %}
+
+    <a href="/course/{{ course.id }}/create-request">
+        Создать заявку
+    </a>
+
+{% else %}
+
+    <p>
+        Авторизуйтесь, чтобы создать заявку
+    </p>
+
+{% endif %}
+
+<hr>
+
+<h3>Заявки по курсу</h3>
+
+{% for req in requests %}
+
+    <div class="request-block">
+
+        <p>
+            <strong>
+                Пользователь:
+                <span class="username">
+                    {{ req.user.username }}
+                </span>
+            </strong>
+        </p>
+
+        <p>{{ req.text }}</p>
+
+        <hr>
+
+        <h4>Отзывы</h4>
+
+        {% for review in req.reviews %}
+
+            <div class="review">
+
+                <p>
+                    <strong>
+                        Пользователь: 
+                        <span class="username">
+                            {{ review.author.username }}
+                        </span>
+                    </strong>
+                </p>
+
+                <p>{{ review.text }}</p>
+
+            </div>
+
+        {% else %}
+
+            <p>Отзывов пока нет</p>
+
+        {% endfor %}
+
+        <hr>
+
+        {% if current_user.is_authenticated %}
+
+            <form
+                method="POST"
+                action="/request/{{ req.id }}/review"
+            >
+
+                <textarea
+                    name="text"
+                    rows="3"
+                    cols="50"
+                    placeholder="Написать отзыв"
+                ></textarea>
+
+                <br><br>
+
+                <button type="submit">
+                    Отправить отзыв
+                </button>
+
+            </form>
+
+        {% endif %}
+
+    </div>
+
+    <hr>
+
+{% endfor %}
+
+{% endblock %}

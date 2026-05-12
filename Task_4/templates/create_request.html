@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Новая заявка</h2>
+
+<p>Курс: {{ course.title }}</p>
+
+<form method="POST">
+
+    <textarea
+        name="text"
+        rows="5"
+        cols="50"
+        placeholder="Введите текст заявки"
+    ></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Создать заявку
+    </button>
+
+</form>
+
+{% endblock %}

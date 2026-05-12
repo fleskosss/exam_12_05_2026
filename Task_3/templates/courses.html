@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Список курсов</h2>
+
+{% for course in courses %}
+
+    <div>
+
+        <h3>
+            <a href="/course/{{ course.id }}">
+                {{ course.title }}
+            </a>
+        </h3>
+
+        <p>{{ course.description }}</p>
+
+    </div>
+
+    <hr>
+
+{% endfor %}
+
+{% endblock %}

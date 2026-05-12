@@ -1,0 +1,35 @@
+body {
+    font-family: Arial;
+    margin: 40px;
+}
+
+.flash {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.flash.error {
+    background: #ffdddd;
+    color: #a10000;
+    border: 1px solid #ff0000;
+}
+
+.username {
+    color: blueviolet;
+}
+
+.request-block {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.review {
+    margin-left: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
